@@ -1,0 +1,278 @@
+# Instincts generated from https://github.com/jackiec7786/Codex-project
+# Generated: 2026-05-02T16:32:33.671Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: Codex-project-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/jackiec7786/Codex-project
+---
+
+# Codex Project Commit Length
+
+## Action
+
+Keep commit messages concise (~45 characters)
+
+## Evidence
+
+- Average commit message length: 45 chars
+- Based on 1 commits
+
+---
+id: Codex-project-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/jackiec7786/Codex-project
+---
+
+# Codex Project Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: Codex-project-import-alias
+trigger: "when importing modules"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/jackiec7786/Codex-project
+---
+
+# Codex Project Import Alias
+
+## Action
+
+Use path aliases (@/, ~/) instead of relative imports
+
+## Evidence
+
+- Import analysis shows alias pattern
+- Example: import { x } from '@/lib/x'
+
+---
+id: Codex-project-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/jackiec7786/Codex-project
+---
+
+# Codex Project Export Style
+
+## Action
+
+Prefer default exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: default
+
+---
+id: Codex-project-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/jackiec7786/Codex-project
+---
+
+# Codex Project Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: codex-project-instinct-file-naming-camelCase
+trigger: "When creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: jackiec7786/Codex-project
+---
+
+# Codex Project Instinct File Naming CamelCase
+
+## Action
+
+Name the file using camelCase
+
+## Evidence
+
+- Pattern in namingConventions.files
+
+---
+id: codex-project-instinct-function-naming-camelCase
+trigger: "When defining a new function"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: jackiec7786/Codex-project
+---
+
+# Codex Project Instinct Function Naming CamelCase
+
+## Action
+
+Name the function using camelCase
+
+## Evidence
+
+- Pattern in namingConventions.functions
+
+---
+id: codex-project-instinct-class-naming-PascalCase
+trigger: "When defining a new class"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: jackiec7786/Codex-project
+---
+
+# Codex Project Instinct Class Naming PascalCase
+
+## Action
+
+Name the class using PascalCase
+
+## Evidence
+
+- Pattern in namingConventions.classes
+
+---
+id: codex-project-instinct-constant-naming-SCREAMING_SNAKE_CASE
+trigger: "When defining a constant"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: jackiec7786/Codex-project
+---
+
+# Codex Project Instinct Constant Naming SCREAMING_SNAKE_CASE
+
+## Action
+
+Name the constant using SCREAMING_SNAKE_CASE
+
+## Evidence
+
+- Pattern in namingConventions.constants
+
+---
+id: codex-project-instinct-import-alias
+trigger: "When importing modules"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: jackiec7786/Codex-project
+---
+
+# Codex Project Instinct Import Alias
+
+## Action
+
+Use import aliases
+
+## Evidence
+
+- Pattern in importStyle: alias
+
+---
+id: codex-project-instinct-export-default
+trigger: "When exporting modules or components"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: jackiec7786/Codex-project
+---
+
+# Codex Project Instinct Export Default
+
+## Action
+
+Use default exports
+
+## Evidence
+
+- Pattern in exportStyle: default
+
+---
+id: codex-project-instinct-test-location-separate
+trigger: "When adding tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: jackiec7786/Codex-project
+---
+
+# Codex Project Instinct Test Location Separate
+
+## Action
+
+Place test files in a separate folder from source files
+
+## Evidence
+
+- Pattern in architecture.folderStructure.testLocation: separate
+
+---
+id: codex-project-instinct-git-commit-freeform
+trigger: "When writing a commit message"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: jackiec7786/Codex-project
+---
+
+# Codex Project Instinct Git Commit Freeform
+
+## Action
+
+Use a freeform message without a required prefix
+
+## Evidence
+
+- Pattern in commits.type: freeform
+- Example: 'Scaffold Grenada Board full-stack Next.js app'
+
+---
+id: codex-project-instinct-git-commit-length
+trigger: "When writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: jackiec7786/Codex-project
+---
+
+# Codex Project Instinct Git Commit Length
+
+## Action
+
+Keep the commit message concise, around 45 characters on average
+
+## Evidence
+
+- Pattern in commits.averageLength: 45
+
