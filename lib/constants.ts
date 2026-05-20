@@ -1,2 +1,0 @@
-export const PARISHES = ["SAINT_GEORGE","SAINT_DAVID","SAINT_ANDREW","SAINT_PATRICK","SAINT_MARK","SAINT_JOHN","CARRIACOU","PETITE_MARTINIQUE","ONLINE_DIASPORA"] as const;
-export const CATEGORY_NAMES = ["General","News & Local Updates","Events","Jobs & Opportunities","Housing & Rentals","Buy / Sell / Trade","Lost & Found","Travel & Transport","Food & Culture","Government & Public Services","Small Business","Safety & Weather","Diaspora"];
