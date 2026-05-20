@@ -1,1 +1,0 @@
-export default function SignUp(){return <div className="mx-auto max-w-md rounded-2xl border bg-white p-6 dark:bg-zinc-900"><h1 className="text-xl font-bold">Sign up</h1><p className="text-sm">Wire this page to your preferred onboarding flow.</p></div>}
