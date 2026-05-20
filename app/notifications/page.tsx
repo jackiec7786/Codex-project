@@ -1,12 +1,15 @@
 import Header from '@/components/Header';
-import { MessageCircle, Eye, Tag, Star } from 'lucide-react';
+import Footer from '@/components/Footer';
+import MobileBottomNav from '@/components/MobileBottomNav';
+import { MessageCircle, Eye, Tag, Star, ShieldCheck, Sparkles } from 'lucide-react';
 
 const NOTIFS = [
-  { icon: <MessageCircle size={16} />, title: 'New message from Michael', text: 'Apartment still available?', time: '2m ago', unread: true },
-  { icon: <Eye size={16} />, title: 'Your ad is getting views!', text: 'iPhone 13 Pro 128GB has 25 new views.', time: '1h ago', unread: true },
-  { icon: <MessageCircle size={16} />, title: 'New reply from Carla', text: "Thanks! I'll come by tomorrow.", time: '3h ago' },
-  { icon: <Tag size={16} />, title: 'Your ad is live', text: '2 Bed Apartment - Grand Anse is now live.', time: '5h ago' },
-  { icon: <Star size={16} />, title: 'New review received', text: 'You received a 5-star review.', time: '1d ago' },
+  { icon: <MessageCircle size={16} />, title: 'New message from Andre P.', text: 'Is the rental still available?', time: '2m ago', unread: true },
+  { icon: <Eye size={16} />, title: 'Your listing is trending', text: 'Royal Palms in Grenada has 25 new views today.', time: '1h ago', unread: true },
+  { icon: <ShieldCheck size={16} />, title: 'Vendor application approved', text: 'You are now a Verified Vendor on SpiceClassifieds.', time: '3h ago', unread: true },
+  { icon: <Sparkles size={16} />, title: 'Boost expiring soon', text: 'Your Featured boost on 10K diamond ring expires in 2 days.', time: '5h ago' },
+  { icon: <Tag size={16} />, title: 'Your ad is live', text: 'Premier Cook & Bake Stove is now live across Grenada.', time: '1d ago' },
+  { icon: <Star size={16} />, title: 'New review received', text: 'Andre P. left you a 5-star review.', time: '2d ago' },
 ];
 
 export default function NotificationsPage() {
@@ -17,7 +20,7 @@ export default function NotificationsPage() {
         <div className="notif-list">
           <div className="notif-header">
             <h2>Notifications</h2>
-            <a href="#" style={{ color: 'var(--brand-green)', fontSize: 13, fontWeight: 600 }}>Mark all as read</a>
+            <a href="#" style={{ color: 'var(--brand)', fontSize: 13, fontWeight: 600 }}>Mark all as read</a>
           </div>
           {NOTIFS.map((n, i) => (
             <div key={i} className="notif-item">
@@ -30,11 +33,10 @@ export default function NotificationsPage() {
               {n.unread && <div className="notif-unread" />}
             </div>
           ))}
-          <div style={{ padding: 16, textAlign: 'center' }}>
-            <a href="#" style={{ color: 'var(--brand-green)', fontSize: 13, fontWeight: 600 }}>View all notifications</a>
-          </div>
         </div>
       </main>
+      <Footer />
+      <MobileBottomNav />
     </>
   );
 }

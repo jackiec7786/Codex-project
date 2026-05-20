@@ -1,9 +1,15 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'SpiceClassifieds — Find it. List it. Love Local.',
-  description: "Grenada's trusted marketplace for local services, rentals, electronics and more.",
+  title: "Grenada Classifieds | Buy, Sell & Rent in Grenada | SpiceClassifieds",
+  description: "Grenada's #1 classifieds site. Browse cars for sale, apartments to rent, jobs, local services, and more — all across Grenada. Free to post.",
+};
+
+export const viewport: Viewport = {
+  themeColor: '#FF6B35',
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
