@@ -1,55 +1,28 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import MobileBottomNav from '@/components/MobileBottomNav';
-import ListingCard from '@/components/ListingCard';
-import { ShieldCheck, MessageCircle } from 'lucide-react';
-import { LISTINGS } from '@/lib/data';
+import { BottomNav, Header } from "../../components/ui";
 
 export default function ProfilePage() {
-  const userListings = LISTINGS.slice(0, 4);
   return (
     <>
-      <Header />
-      <main className="container" style={{ paddingTop: 24, paddingBottom: 60 }}>
-        <div className="profile-banner">
-          <div className="profile-avatar-wrap">
-            <div className="avatar">J</div>
-            <div className="profile-name">
-              Jackie M. <ShieldCheck size={16} style={{ color: 'var(--accent-green)', display: 'inline', verticalAlign: '-2px' }} />
-              <div className="meta">
-                Member since 2024 • <span style={{ color: 'var(--accent-yellow)' }}>★</span> 4.9 (12 reviews) • St. George&apos;s
-              </div>
-            </div>
-          </div>
-          <div style={{ position: 'absolute', right: 20, bottom: 16, display: 'flex', gap: 8 }}>
-            <button className="btn btn-outline btn-sm" style={{ background: 'rgba(255,255,255,0.95)' }}>
-              <MessageCircle size={14} /> Message
-            </button>
-            <button className="btn btn-primary btn-sm">Edit Profile</button>
-          </div>
-        </div>
+      <div className="desktop shell profile-shell">
+        <Header />
+        <main className="panel desktop-profile">
+          <div className="profile-cover"></div>
+          <section className="profile-bar">
+            <div className="avatar large">🌴</div><div><h2>Alicia M.</h2><p>Member since 2022　★ 4.8 (24 reviews)</p></div>
+            <div className="profile-stats"><b>23<small>Listings</small></b><b>12<small>Sold Items</small></b><b>45<small>Reviews</small></b><b>98%<small>Response Rate</small></b></div>
+          </section>
+          <section className="my-listings"><h3>My Listings</h3><p>iPhone 13 Pro 128GB　$1,650　Active</p><p>2 Bed Apartment　$1,800/mo　Active</p><p>Sectional Sofa　$850　Active</p></section>
+        </main>
+      </div>
 
-        <div className="profile-stats">
-          <div className="profile-stat"><div className="value">5</div><div className="label">Active Listings</div></div>
-          <div className="profile-stat"><div className="value">8</div><div className="label">Sold Items</div></div>
-          <div className="profile-stat"><div className="value">12</div><div className="label">Reviews</div></div>
-          <div className="profile-stat"><div className="value">98%</div><div className="label">Response Rate</div></div>
-          <div className="profile-stat"><div className="value">&lt; 1 hr</div><div className="label">Reply Time</div></div>
-        </div>
-
-        <div className="profile-tabs">
-          <div className="profile-tab active">My Listings</div>
-          <div className="profile-tab">Sold</div>
-          <div className="profile-tab">Reviews (12)</div>
-          <div className="profile-tab">About</div>
-        </div>
-
-        <div className="listing-grid cols-4">
-          {userListings.map((l) => <ListingCard key={l.id} listing={l} />)}
-        </div>
-      </main>
-      <Footer />
-      <MobileBottomNav />
+      <div className="mobile mobile-page profile-mobile">
+        <section className="profile-top">
+          <div className="avatar large">🌴</div><div><strong>Alicia M.</strong><p>St. George&apos;s, Grenada</p><button className="outline tiny">Edit Profile</button></div>
+        </section>
+        <div className="profile-number-row"><b>23<small>Listings</small></b><b>12<small>Saved</small></b><b>8<small>Reviews</small></b></div>
+        <section className="profile-menu"><p>▣ My Listings　›</p><p>◩ My Posted Ads　›</p><p>⚙ Account Settings　›</p><p>? Help & Support　›</p><p className="danger-link">⇥ Log Out</p></section>
+        <BottomNav active="Profile" />
+      </div>
     </>
   );
 }
