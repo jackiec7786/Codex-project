@@ -1,17 +1,20 @@
 import Header from '@/components/Header';
-import { Plus, LayoutDashboard, List, Bookmark, MessageCircle, ShoppingBag, Star, BarChart3, Settings, LogOut, Eye, Star as StarIcon, MessageSquare, DollarSign } from 'lucide-react';
+import Footer from '@/components/Footer';
+import MobileBottomNav from '@/components/MobileBottomNav';
+import Link from 'next/link';
+import { Plus, LayoutDashboard, List, Bookmark, MessageCircle, Star, Settings, LogOut, Eye, ShoppingBag, DollarSign, Heart } from 'lucide-react';
 
 const STATS = [
-  { value: '23', label: 'Active Listings', icon: <StarIcon size={16} />, color: 'yellow' },
-  { value: '12', label: 'Sold Items', icon: <ShoppingBag size={16} />, color: 'green' },
-  { value: '45', label: 'Profile Views', icon: <Eye size={16} />, color: 'red' },
-  { value: '$3,450', label: 'Total Earnings', icon: <DollarSign size={16} />, color: 'purple' },
+  { value: '5', label: 'Active Listings', icon: <List size={16} />, color: 'orange' as const },
+  { value: '12', label: 'Saved Items', icon: <Heart size={16} />, color: 'green' as const },
+  { value: '342', label: 'Profile Views', icon: <Eye size={16} />, color: 'yellow' as const },
+  { value: 'XCD 1,250', label: 'Total Earnings', icon: <DollarSign size={16} />, color: 'purple' as const },
 ];
 
-const TOP_LISTINGS = [
-  { title: '2 Bed Apartment - Grand Anse', meta: '342 views', emoji: '🏡' },
-  { title: 'iPhone 13 Pro 128GB', meta: '128 views', emoji: '📱' },
-  { title: 'Sectional Sofa - Like New', meta: '87 views', emoji: '🛋️' },
+const MY_LISTINGS = [
+  { title: '10K diamond ring, size 6.5', meta: '87 views • 3 messages', emoji: '💍', status: 'active' as const },
+  { title: 'Himalayan Pink Salt 5LB', meta: '34 views • 1 message', emoji: '🧂', status: 'active' as const },
+  { title: 'Autoparts and Accessories', meta: '128 views • Sold', emoji: '🔧', status: 'sold' as const },
 ];
 
 export default function DashboardPage() {
@@ -21,20 +24,25 @@ export default function DashboardPage() {
       <main className="container">
         <div className="dashboard-layout">
           <aside className="dash-sidebar">
-            <div className="avatar">A</div>
-            <div className="dash-user-name">Alicia M.</div>
-            <a className="dash-view-profile" href="/profile">View Profile</a>
+            <div className="dash-user">
+              <div className="avatar">J</div>
+              <div>
+                <div className="name">Jackie M.</div>
+                <div className="role">Member since 2024</div>
+              </div>
+            </div>
 
-            <button className="dash-post-ad-btn"><Plus size={16} /> Post an Ad</button>
+            <Link href="/listings/create" className="dash-post-ad-btn">
+              <Plus size={16} /> Post New Ad
+            </Link>
 
             <ul className="dash-nav">
               <li className="active"><LayoutDashboard size={16} /> Dashboard</li>
               <li><List size={16} /> My Listings</li>
               <li><Bookmark size={16} /> Saved Items</li>
-              <li><MessageCircle size={16} /> Messages <span className="badge">3</span></li>
+              <li><MessageCircle size={16} /> Messages <span className="nav-badge">3</span></li>
               <li><ShoppingBag size={16} /> Orders</li>
               <li><Star size={16} /> Reviews</li>
-              <li><BarChart3 size={16} /> Analytics</li>
               <li><Settings size={16} /> Settings</li>
               <li><LogOut size={16} /> Log Out</li>
             </ul>
@@ -42,11 +50,10 @@ export default function DashboardPage() {
 
           <div>
             <div className="dash-header">
-              <h1 className="dash-title">Dashboard</h1>
-              <div className="dash-period">May 12 — Jun 12 ▾</div>
+              <h1 className="dash-title">Welcome back, Jackie 👋</h1>
+              <div className="dash-period">Last 30 days ▾</div>
             </div>
 
-            <h3 style={{ fontSize: 14, color: 'var(--text-muted)', marginBottom: 12, fontWeight: 600 }}>Overview</h3>
             <div className="stat-grid">
               {STATS.map((s) => (
                 <div key={s.label} className="stat-card">
@@ -67,38 +74,39 @@ export default function DashboardPage() {
                 <svg className="chart-svg" viewBox="0 0 600 200" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="rgba(15,122,90,0.25)" />
-                      <stop offset="100%" stopColor="rgba(15,122,90,0)" />
+                      <stop offset="0%" stopColor="rgba(255,107,53,0.3)" />
+                      <stop offset="100%" stopColor="rgba(255,107,53,0)" />
                     </linearGradient>
                   </defs>
                   <path d="M0,140 C60,120 100,80 160,90 C220,100 260,60 320,55 C380,50 440,90 500,70 C540,55 580,40 600,30 L600,200 L0,200 Z" fill="url(#g)" />
-                  <path d="M0,140 C60,120 100,80 160,90 C220,100 260,60 320,55 C380,50 440,90 500,70 C540,55 580,40 600,30" stroke="var(--brand-green)" strokeWidth="2.5" fill="none" />
+                  <path d="M0,140 C60,120 100,80 160,90 C220,100 260,60 320,55 C380,50 440,90 500,70 C540,55 580,40 600,30" stroke="var(--brand)" strokeWidth="2.5" fill="none" />
                 </svg>
-              </div>
-              <div className="row-between" style={{ marginTop: 12, fontSize: 11, color: 'var(--text-muted)' }}>
-                <span>May 12</span><span>May 19</span><span>May 26</span><span>Jun 2</span><span>Jun 9</span>
               </div>
             </div>
 
             <div className="dash-section">
               <div className="dash-section-header">
-                <h3>Top Performing Listings</h3>
-                <a href="/browse" style={{ color: 'var(--brand-green)', fontSize: 13, fontWeight: 600 }}>View all analytics →</a>
+                <h3>My Listings</h3>
+                <Link href="/listings/create" className="see-all">+ New listing</Link>
               </div>
-              {TOP_LISTINGS.map((l) => (
+              {MY_LISTINGS.map((l) => (
                 <div key={l.title} className="dash-listing-row">
                   <div className="dash-listing-thumb">{l.emoji}</div>
                   <div className="dash-listing-info">
                     <div className="title">{l.title}</div>
                     <div className="meta">{l.meta}</div>
                   </div>
-                  <span className="status-pill active">Active</span>
+                  <span className={`status-pill ${l.status}`}>
+                    {l.status === 'active' ? 'Active' : l.status === 'sold' ? 'Sold' : 'Pending'}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
         </div>
       </main>
+      <Footer />
+      <MobileBottomNav />
     </>
   );
 }

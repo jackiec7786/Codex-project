@@ -1,45 +1,46 @@
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import MobileBottomNav from '@/components/MobileBottomNav';
 import ListingCard from '@/components/ListingCard';
 import Link from 'next/link';
-import { Search, MapPin, Wrench, Monitor, Home as HomeIcon, Tag, Sprout, Car, Briefcase, MoreHorizontal, Plus } from 'lucide-react';
+import { Search, MapPin, Plus, Sparkles, Store, HeartHandshake, ArrowRight } from 'lucide-react';
+import { CATEGORIES, LISTINGS, POPULAR_SEARCHES } from '@/lib/data';
 
-const CATS = [
-  { name: 'Services', count: '642 listings', icon: <Wrench size={22} />, color: 'green' },
-  { name: 'Electronics', count: '186 listings', icon: <Monitor size={22} />, color: 'red' },
-  { name: 'Rentals', count: '312 listings', icon: <HomeIcon size={22} />, color: 'green' },
-  { name: 'For Sale', count: '451 listings', icon: <Tag size={22} />, color: 'yellow' },
-  { name: 'Home & Garden', count: '98 listings', icon: <Sprout size={22} />, color: 'green' },
-  { name: 'Vehicles', count: '76 listings', icon: <Car size={22} />, color: 'red' },
-  { name: 'Jobs', count: '53 listings', icon: <Briefcase size={22} />, color: 'green' },
-];
-
-const FEATURED = [
-  { id: '1', title: 'iPhone 13 Pro 128GB', price: '$1,650', location: "St. George's", emoji: '📱', bg: 'green-bg' as const, badge: 'featured' as const },
-  { id: '2', title: '2 Bed Apartment - Grand Anse', price: '$1,800/mo', location: 'Grand Anse', emoji: '🏡', bg: 'warm-bg' as const, badge: 'new' as const, forRent: true },
-  { id: '3', title: 'Sectional Sofa - Like New', price: '$850', location: "St. George's", emoji: '🛋️', bg: 'gray-bg' as const },
-  { id: '4', title: 'House Cleaning Service', price: '$120', location: "St. George's", emoji: '🧹', bg: 'sky-bg' as const },
-  { id: '5', title: 'Dining Table Set', price: '$450', location: "St. David's", emoji: '🪑', bg: 'warm-bg' as const },
-  { id: '6', title: 'Samsung Galaxy S23 Ultra', price: '$1,250', location: "St. George's", emoji: '📱', bg: 'green-bg' as const },
+const FAQS = [
+  { q: 'How do I post a listing on SpiceClassifieds?', a: "Click 'Post Your Ad for Free', sign in or create a free account, fill in your listing details, and publish. Your listing goes live immediately." },
+  { q: 'What can I buy or sell here?', a: 'Almost anything — cars, electronics, real estate and rentals, furniture, clothing, jobs, local services, farm-to-table produce, pets, and more.' },
+  { q: 'How do buyers contact sellers?', a: 'Buyers can message sellers via WhatsApp, phone call, or the built-in chat — all directly from the listing page.' },
+  { q: 'Is it free to use?', a: 'Posting a basic listing is free. Featured listings get more visibility for a small fee. Verified vendor storefronts are available through subscription plans.' },
+  { q: 'Can SGU students find housing here?', a: 'Yes. The SGU Student Hub has listings specifically for student housing, roommates, textbooks, rides, and services near St. George\u2019s University.' },
 ];
 
 export default function HomePage() {
+  const featured = LISTINGS.filter((l) => l.featured);
+  const latest = LISTINGS.filter((l) => !l.featured).slice(0, 8);
+
   return (
     <>
       <Header />
 
+      {/* HERO */}
       <section className="hero">
         <div className="container hero-grid">
           <div>
+            <span className="hero-eyebrow">🇬🇩 Grenada&apos;s #1 Marketplace</span>
             <h1>
-              <span>Find it.</span>
-              <span>List it.</span>
-              <span>Love Local.</span>
+              Grenada Classifieds —<br />
+              Buy, Sell &amp; Rent <span className="accent">Locally</span> <span className="flag">🇬🇩</span>
             </h1>
             <p className="hero-sub">
-              Grenada&apos;s trusted marketplace for local services, rentals, electronics and more.
+              SpiceClassifieds is Grenada&apos;s local marketplace for{' '}
+              <Link href="/listings?category=vehicles">cars</Link>,{' '}
+              <Link href="/listings?category=real-estate">rentals</Link>,{' '}
+              <Link href="/listings?category=jobs">jobs</Link>,{' '}
+              <Link href="/listings?category=services">services</Link>, and everyday goods.
+              Free to post. No stress. Just locals doing business.
             </p>
 
-            <div className="hero-search">
+            <div className="search-bar">
               <div className="field">
                 <Search size={16} />
                 <input placeholder="What are you looking for?" />
@@ -49,14 +50,21 @@ export default function HomePage() {
                 <MapPin size={16} />
                 <input placeholder="All of Grenada" />
               </div>
-              <button className="btn btn-secondary">Search</button>
+              <button className="btn btn-primary">Search</button>
             </div>
 
             <div className="hero-actions">
-              <Link href="/browse" className="btn btn-primary btn-lg">Browse Categories</Link>
-              <Link href="/post-ad" className="btn btn-yellow btn-lg">
-                <Plus size={16} /> Post an Ad
+              <Link href="/listings/create" className="btn btn-primary btn-lg">
+                <Plus size={16} /> Post Your Ad for Free
               </Link>
+              <Link href="/vendor/apply" className="btn btn-outline btn-lg">
+                <Store size={16} /> Set Up a Vendor Profile
+              </Link>
+            </div>
+
+            <div className="hero-promo">
+              🎉 <strong>Featured Listings get 5x more views.</strong> Boost your ad for as little as XCD 5/week —{' '}
+              <Link href="/vendor/dashboard">spotlight your items now</Link>.
             </div>
           </div>
 
@@ -69,37 +77,139 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* CATEGORIES */}
       <section className="section">
         <div className="container">
-          <h2 className="section-title">Popular Categories</h2>
+          <div className="section-head">
+            <div>
+              <h2>Browse by Category</h2>
+              <div className="sub">All 20 categories across the Spice Isle</div>
+            </div>
+            <Link href="/listings" className="see-all">View all →</Link>
+          </div>
+
           <div className="cat-grid">
-            {CATS.map((c) => (
-              <Link key={c.name} href="/browse" className="cat-card">
-                <div className={`cat-icon ${c.color}`}>{c.icon}</div>
+            {CATEGORIES.map((c) => (
+              <Link key={c.slug} href={`/listings?category=${c.slug}`} className="cat-card">
+                <div className="cat-emoji">{c.emoji}</div>
                 <div className="cat-name">{c.name}</div>
-                <div className="cat-count">{c.count}</div>
+                {c.count > 0 ? (
+                  <div className="cat-count has-ads">{c.count} ads</div>
+                ) : (
+                  <div className="cat-count">Browse →</div>
+                )}
               </Link>
             ))}
-            <Link href="/browse" className="cat-card">
-              <div className="cat-icon gray"><MoreHorizontal size={22} /></div>
-              <div className="cat-name">More</div>
-              <div className="cat-count">View all</div>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURED LISTINGS */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <h2><Sparkles size={22} style={{ display: 'inline', color: 'var(--brand)', verticalAlign: '-4px' }} /> Featured Listings</h2>
+              <div className="sub">Boosted ads that get 5x more views</div>
+            </div>
+            <Link href="/listings?featured=true" className="see-all">See all featured →</Link>
+          </div>
+          <div className="listing-grid cols-4">
+            {featured.map((l) => <ListingCard key={l.id} listing={l} />)}
+            {featured.length < 4 && latest.slice(0, 4 - featured.length).map((l) => <ListingCard key={l.id} listing={l} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURE BANNERS — Farm-to-Table + SGU Hub */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div className="feature-banners">
+            <Link href="/listings?category=farm-to-table" className="feature-banner farm">
+              <h3>🌿 Farm-to-Table Fresh</h3>
+              <p>Shop local produce, spices &amp; homemade goods directly from Grenadian farmers.</p>
+              <span className="feature-cta">Discover Fresh Finds <ArrowRight size={14} /></span>
+            </Link>
+            <Link href="/listings?category=sgu" className="feature-banner sgu">
+              <h3>🎓 SGU Student Hub</h3>
+              <p>Housing, textbooks, rides &amp; more — all in one place for SGU students.</p>
+              <span className="feature-cta">Explore SGU Hub <ArrowRight size={14} /></span>
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="section">
+      {/* LATEST LISTINGS */}
+      <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
-          <div className="row-between" style={{ marginBottom: 24 }}>
-            <h2 className="section-title" style={{ margin: 0 }}>Featured Listings</h2>
-            <Link href="/browse" style={{ color: 'var(--brand-red)', fontWeight: 600, fontSize: 14 }}>View all →</Link>
+          <div className="section-head">
+            <div>
+              <h2>🆕 Latest Listings</h2>
+              <div className="sub">Fresh ads posted across Grenada</div>
+            </div>
+            <Link href="/listings" className="see-all">Browse all listings →</Link>
           </div>
-          <div className="listing-grid">
-            {FEATURED.map((l) => <ListingCard key={l.id} {...l} />)}
+          <div className="listing-grid cols-4">
+            {latest.map((l) => <ListingCard key={l.id} listing={l} />)}
           </div>
         </div>
       </section>
+
+      {/* POPULAR SEARCHES */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div className="section-head">
+            <h2>Popular Searches in Grenada</h2>
+          </div>
+          <div className="search-chips">
+            {POPULAR_SEARCHES.map((s) => (
+              <Link key={s.label} href={s.href} className="search-chip">{s.label}</Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div className="section-head" style={{ justifyContent: 'center', textAlign: 'center' }}>
+            <div>
+              <h2>Frequently Asked Questions</h2>
+              <div className="sub">Everything you need to know to get started</div>
+            </div>
+          </div>
+          <div className="faq-list">
+            {FAQS.map((f, i) => (
+              <details key={i} className="faq-item" open={i === 0}>
+                <summary className="faq-q">{f.q}<span>+</span></summary>
+                <div className="faq-a">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA STRIP */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div className="cta-strip">
+            <h2>Ready to Start Selling?</h2>
+            <p>Join thousands of sellers on SpiceClassifieds across Grenada.</p>
+            <div className="cta-feats">
+              <div className="cta-feat">✓ Verified Store</div>
+              <div className="cta-feat">✓ Boost Sales</div>
+              <div className="cta-feat"><HeartHandshake size={16} /> Local Support</div>
+            </div>
+            <div className="cta-buttons">
+              <Link href="/listings/create" className="btn btn-primary btn-lg">Post Your First Listing</Link>
+              <Link href="/vendors" className="btn btn-outline btn-lg">Browse Vendors</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      <MobileBottomNav />
     </>
   );
 }
