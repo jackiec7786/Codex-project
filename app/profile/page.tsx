@@ -1,28 +1,69 @@
-import { BottomNav, Header } from "../../components/ui";
+import AnnounceBar from '@/components/AnnounceBar';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import ListingCard from '@/components/ListingCard';
+import { FEATURED_LISTINGS } from '@/lib/data';
+import { Edit2, MapPin, Calendar, ShieldCheck, Star } from 'lucide-react';
 
 export default function ProfilePage() {
   return (
     <>
-      <div className="desktop shell profile-shell">
-        <Header />
-        <main className="panel desktop-profile">
-          <div className="profile-cover"></div>
-          <section className="profile-bar">
-            <div className="avatar large">🌴</div><div><h2>Alicia M.</h2><p>Member since 2022　★ 4.8 (24 reviews)</p></div>
-            <div className="profile-stats"><b>23<small>Listings</small></b><b>12<small>Sold Items</small></b><b>45<small>Reviews</small></b><b>98%<small>Response Rate</small></b></div>
-          </section>
-          <section className="my-listings"><h3>My Listings</h3><p>iPhone 13 Pro 128GB　$1,650　Active</p><p>2 Bed Apartment　$1,800/mo　Active</p><p>Sectional Sofa　$850　Active</p></section>
-        </main>
+      <AnnounceBar />
+      <Header />
+
+      <div className="container">
+        <div className="profile-banner">
+          <div className="profile-avatar-wrap">
+            <div className="avatar">JD</div>
+            <div className="profile-name">
+              Jane Doe <ShieldCheck size={18} style={{ display: 'inline', color: '#1E88E5', verticalAlign: 'middle' }} />
+              <div className="meta">
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, marginRight: 12 }}>
+                  <MapPin size={12} /> Grand Anse, Grenada
+                </span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                  <Calendar size={12} /> Member since Mar 2023
+                </span>
+              </div>
+            </div>
+          </div>
+          <button className="profile-edit-btn">
+            <Edit2 size={12} style={{ marginRight: 4, verticalAlign: 'middle' }} /> Edit Profile
+          </button>
+        </div>
+
+        <div className="profile-stats">
+          <div className="profile-stat">
+            <div className="value">14</div>
+            <div className="label">Active Listings</div>
+          </div>
+          <div className="profile-stat">
+            <div className="value">87</div>
+            <div className="label">Sold</div>
+          </div>
+          <div className="profile-stat">
+            <div className="value">4.8 <Star size={14} style={{ display: 'inline', color: 'var(--brand-yellow)', verticalAlign: 'baseline' }} fill="currentColor" /></div>
+            <div className="label">Rating (38 reviews)</div>
+          </div>
+          <div className="profile-stat">
+            <div className="value">1h</div>
+            <div className="label">Avg. Response</div>
+          </div>
+        </div>
+
+        <div className="profile-tabs">
+          <div className="profile-tab active">Active Listings (14)</div>
+          <div className="profile-tab">Reviews (38)</div>
+          <div className="profile-tab">About</div>
+          <div className="profile-tab">Sold</div>
+        </div>
+
+        <div className="listing-grid">
+          {FEATURED_LISTINGS.map((l) => <ListingCard key={l.id} listing={l} />)}
+        </div>
       </div>
 
-      <div className="mobile mobile-page profile-mobile">
-        <section className="profile-top">
-          <div className="avatar large">🌴</div><div><strong>Alicia M.</strong><p>St. George&apos;s, Grenada</p><button className="outline tiny">Edit Profile</button></div>
-        </section>
-        <div className="profile-number-row"><b>23<small>Listings</small></b><b>12<small>Saved</small></b><b>8<small>Reviews</small></b></div>
-        <section className="profile-menu"><p>▣ My Listings　›</p><p>◩ My Posted Ads　›</p><p>⚙ Account Settings　›</p><p>? Help & Support　›</p><p className="danger-link">⇥ Log Out</p></section>
-        <BottomNav active="Profile" />
-      </div>
+      <Footer />
     </>
   );
 }
