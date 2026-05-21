@@ -1,31 +1,37 @@
-import Image from "next/image";
-import { BottomNav, Header, listings } from "../../components/ui";
+import AnnounceBar from '@/components/AnnounceBar';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import ListingCard from '@/components/ListingCard';
+import { FEATURED_LISTINGS, LATEST_LISTINGS } from '@/lib/data';
 
 export default function SavedPage() {
+  const saved = [...FEATURED_LISTINGS.slice(0, 2), ...LATEST_LISTINGS.slice(0, 4)];
+
   return (
     <>
-      <div className="desktop shell saved-shell">
-        <Header />
-        <main className="panel saved-panel">
-          <h2>Saved Items</h2>
-          <p className="muted">4 items</p>
-          <div className="cards-row">{listings.slice(1,5).map((item) => <article className="listing-card" key={item.title}><div className="thumb-wrap"><Image src={item.image} alt="" fill className="cover" /><span className="heart">♥</span></div><h3>{item.title}</h3><strong>{item.price}</strong><p className="muted">{item.location}</p></article>)}</div>
-        </main>
+      <AnnounceBar />
+      <Header />
+
+      <div className="container saved-page">
+        <div className="saved-header">
+          <h1>Saved Listings</h1>
+          <div className="count">{saved.length} items you&apos;ve hearted</div>
+        </div>
+
+        {saved.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '60px 20px' }}>
+            <div style={{ fontSize: 60, marginBottom: 16 }}>💔</div>
+            <h3 style={{ marginBottom: 8 }}>No saved listings yet</h3>
+            <p style={{ color: 'var(--text-muted)' }}>Tap the heart on any listing to save it here.</p>
+          </div>
+        ) : (
+          <div className="listing-grid">
+            {saved.map((l) => <ListingCard key={l.id} listing={l} />)}
+          </div>
+        )}
       </div>
 
-      <div className="mobile mobile-page saved-mobile">
-        <div className="mobile-top"><span></span><strong>Saved</strong><span></span></div>
-        <div className="saved-tabs"><b>Listings</b><span>Searches</span></div>
-        <section className="saved-list">
-          {[
-            ["MacBook Air M1", "$1,200", "/assets/listing-phone-thumb.png"],
-            ["1 Bed Apartment", "$1,200 /mo", "/assets/listing-house-thumb.png"],
-            ["Dining Table Set", "$450", "/assets/listing-table-thumb.png"],
-            ["House Cleaning Service", "$120", "/assets/listing-cleaning-thumb.png"]
-          ].map(([title, price, image]) => <article key={title}><div className="mini-img"><Image src={image} alt="" fill className="cover" /></div><div><strong>{title}</strong><b>{price}</b><small>St. George&apos;s</small></div><span>♥</span></article>)}
-        </section>
-        <BottomNav active="Saved" />
-      </div>
+      <Footer />
     </>
   );
 }
