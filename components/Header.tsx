@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { MessageCircle, Heart, Bell, Menu, X, Plus } from 'lucide-react';
 
@@ -12,11 +13,7 @@ export default function Header() {
       <header className="site-header">
         <div className="container">
           <Link href="/" className="brand" aria-label="SpiceClassifieds home">
-            <div className="brand-logo" />
-            <div className="brand-text">
-              <span className="b1">Spice</span>
-              <span className="b2">Classifieds</span>
-            </div>
+            <Image src="/logo.png" alt="Spice Classifieds" width={200} height={60} priority style={{ objectFit: 'contain' }} />
           </Link>
 
           <nav className="nav-links desktop-only">
