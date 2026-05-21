@@ -30,19 +30,19 @@ export default function HomePage() {
       <AnnounceBar />
       <Header />
 
-      {/* Hero banner - full-bleed illustration, no text overlay since the banner already contains the headline */}
+      {/* Banner - now without the fake buttons */}
       <section className="hero-banner">
         <Image
           src="/hero-banner.webp"
           alt="Find it. List it. Love Local. — Grenada's trusted marketplace"
-          width={1920}
-          height={720}
+          width={1983}
+          height={793}
           priority
           className="hero-banner-img"
         />
       </section>
 
-      {/* Action row below the banner */}
+      {/* Real working buttons below the banner */}
       <section className="hero-actions-row">
         <div className="container">
           <div className="hero-search">
