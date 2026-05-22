@@ -5,7 +5,25 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
 import { CATEGORIES, FEATURED_LISTINGS, LATEST_LISTINGS } from '@/lib/data';
-import { Search, MapPin, ShieldCheck, Zap, Users, ArrowRight, Plus } from 'lucide-react';
+import {
+  Search, MapPin, Plus, ArrowRight,
+  Wrench, Smartphone, Home as HomeIcon, Tag, Leaf, Car, Briefcase, MoreHorizontal,
+  ShieldCheck, Zap, Users, GraduationCap,
+} from 'lucide-react';
+
+/* 8-category strip matching the reference screenshot style.
+   Picked to keep SpiceClassifieds differentiators (SGU + Farm-to-Table)
+   visible above the fold instead of buried behind "More". */
+const HOMEPAGE_CATS = [
+  { label: 'Services',     listings: 24,  color: 'green',  Icon: Wrench,        href: '/listings?category=services' },
+  { label: 'Electronics',  listings: 186, color: 'red',    Icon: Smartphone,    href: '/listings?category=electronics' },
+  { label: 'Rentals',      listings: 312, color: 'green',  Icon: HomeIcon,      href: '/listings?category=real-estate' },
+  { label: 'For Sale',     listings: 451, color: 'yellow', Icon: Tag,           href: '/listings' },
+  { label: 'Farm to Table', listings: 38, color: 'green',  Icon: Leaf,          href: '/listings?category=farm-to-table' },
+  { label: 'Vehicles',     listings: 76,  color: 'red',    Icon: Car,           href: '/listings?category=vehicles' },
+  { label: 'SGU Hub',      listings: 22,  color: 'green',  Icon: GraduationCap, href: '/listings?category=sgu' },
+  { label: 'More',         listings: 0,   color: 'gray',   Icon: MoreHorizontal, href: '/listings', isMore: true },
+];
 
 const POPULAR = [
   { label: 'Cars for Sale', emoji: '🚗', href: '/listings?category=vehicles' },
@@ -30,84 +48,91 @@ export default function HomePage() {
       <AnnounceBar />
       <Header />
 
-      {/* Banner - now without the fake buttons */}
-      <section className="hero-banner">
-        <Image
-          src="/hero-banner.webp"
-          alt="Find it. List it. Love Local. — Grenada's trusted marketplace"
-          width={1983}
-          height={793}
-          priority
-          className="hero-banner-img"
-        />
-      </section>
-
-      {/* Real working buttons below the banner */}
-      <section className="hero-actions-row">
+      {/* Hero: two-column. Real HTML text + buttons on left, illustration on right */}
+      <section className="hero">
         <div className="container">
-          <div className="hero-search">
-            <div className="field">
-              <Search size={16} />
-              <input placeholder="Search for cars, apartments, jobs..." />
-            </div>
-            <div className="divider desktop-only" />
-            <div className="field desktop-only">
-              <MapPin size={16} />
-              <input placeholder="All of Grenada" />
-            </div>
-            <Link href="/listings" className="btn btn-secondary">Search</Link>
-          </div>
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <h1 className="hero-title">
+                <span className="hero-red">Find it.</span>
+                <span className="hero-green">List it.</span>
+                <span className="hero-green">Love Local.</span>
+              </h1>
+              <p className="hero-sub">
+                Grenada&apos;s trusted marketplace for local services, rentals, electronics and more.
+              </p>
 
-          <div className="hero-quick-actions">
-            <Link href="/listings" className="btn btn-primary btn-lg">Browse Categories</Link>
-            <Link href="/listings/create" className="btn btn-yellow btn-lg">
-              <Plus size={16} /> Post an Ad
-            </Link>
-          </div>
-
-          <div className="hero-boost-wrap">
-            <div className="hero-boost-banner">
-              🎉 Featured Listings Get 5x More Views! &nbsp;Boost your ad from XCD 5/week –{' '}
-              <Link href="/vendor/dashboard">spotlight your items</Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <div className="section-head">
-            <h2>Browse by Category</h2>
-            <Link href="/listings">View all →</Link>
-          </div>
-          <div className="cat-grid">
-            {CATEGORIES.map((c) => (
-              <Link key={c.slug} href={`/listings?category=${c.slug}`} className="cat-card">
-                <div className="cat-emoji">{c.emoji}</div>
-                <div className="cat-info">
-                  <div className="cat-name">{c.name}</div>
-                  {c.ads !== undefined && (
-                    <div className="cat-count has-ads">{c.ads} {c.ads === 1 ? 'ad' : 'ads'}</div>
-                  )}
+              <div className="hero-search">
+                <div className="field">
+                  <Search size={16} />
+                  <input placeholder="Search for anything..." />
                 </div>
-              </Link>
-            ))}
+                <div className="divider desktop-only" />
+                <div className="field desktop-only">
+                  <MapPin size={16} />
+                  <input placeholder="All of Grenada" />
+                </div>
+                <Link href="/listings" className="btn btn-secondary">Search</Link>
+              </div>
+
+              <div className="hero-cta-row">
+                <Link href="/listings" className="btn btn-primary btn-lg">Browse Categories</Link>
+                <Link href="/listings/create" className="btn btn-yellow btn-lg">
+                  <Plus size={16} /> Post an Ad
+                </Link>
+              </div>
+            </div>
+
+            <div className="hero-image">
+              <Image
+                src="/hero-illustration.webp"
+                alt="Caribbean scene with palm tree, mountains, and Grenadian coastal village"
+                width={1428}
+                height={793}
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="section">
+      {/* Round colored category strip - 8 items */}
+      <section className="cat-strip-wrap">
+        <div className="container">
+          <div className="cat-strip">
+            {HOMEPAGE_CATS.map((c) => {
+              const Icon = c.Icon;
+              return (
+                <Link key={c.label} href={c.href} className="cat-circle-card">
+                  <div className={`cat-circle cat-circle-${c.color}`}>
+                    <Icon size={24} strokeWidth={2.2} />
+                  </div>
+                  <div className="cat-circle-label">{c.label}</div>
+                  <div className="cat-circle-count">
+                    {c.isMore ? 'View all' : `${c.listings} listings`}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Listings - 5 column row */}
+      <section className="section section-tight">
         <div className="container">
           <div className="section-head">
             <h2>Featured Listings</h2>
-            <Link href="/listings?featured=true">See all featured →</Link>
+            <Link href="/listings?featured=true">View all →</Link>
           </div>
-          <div className="listing-grid">
+          <div className="listing-grid cols-5">
             {FEATURED_LISTINGS.map((l) => <ListingCard key={l.id} listing={l} />)}
+            {LATEST_LISTINGS.slice(0, 1).map((l) => <ListingCard key={l.id} listing={l} />)}
           </div>
         </div>
       </section>
 
+      {/* Latest Listings */}
       <section className="section">
         <div className="container">
           <div className="section-head">
