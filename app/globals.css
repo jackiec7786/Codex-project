@@ -163,73 +163,37 @@ p { margin: 0; }
 .btn-whatsapp { background: #25D366; color: white; }
 .btn-whatsapp:hover { background: #1eb358; }
 
-/* ========== HERO (two-column) ========== */
-.hero {
+/* ========== HERO BANNER (with positioned CTAs over the cream zone) ========== */
+.hero-banner-wrap {
   background: var(--bg);
-  padding: 40px 0 32px;
+  padding: 0;
 }
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 48px;
-  align-items: center;
+.hero-banner-stage {
+  position: relative;
+  max-width: var(--container);
+  margin: 0 auto;
 }
-.hero-copy { max-width: 540px; }
-.hero-title {
-  font-size: clamp(44px, 5.5vw, 68px);
-  font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-}
-.hero-title .hero-red { color: var(--brand-red); }
-.hero-title .hero-green { color: var(--brand-green); }
-.hero-sub {
-  font-size: 16px;
-  color: var(--text-muted);
-  line-height: 1.55;
-  max-width: 420px;
-  margin-bottom: 24px;
-}
-.hero-search {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 6px;
-  display: flex; align-items: center; gap: 6px;
-  box-shadow: var(--shadow);
-  margin-bottom: 16px;
-}
-.hero-search .field {
-  flex: 1; display: flex; align-items: center; gap: 8px;
-  padding: 10px 14px;
-  min-width: 0;
-}
-.hero-search .field svg { color: var(--text-faint); flex-shrink: 0; }
-.hero-search input {
-  flex: 1; border: none; outline: none; background: transparent;
-  font-size: 14px; min-width: 0;
-}
-.hero-search .divider { width: 1px; height: 28px; background: var(--border); }
-
-.hero-cta-row {
-  display: flex; gap: 12px; flex-wrap: wrap;
-}
-.hero-image {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-.hero-image img {
+.hero-banner-img {
   width: 100%;
   height: auto;
   display: block;
 }
+/* CTAs absolutely positioned over the cream area, beneath the subtext.
+   The banner image is 1983 x 793 and the headline+subtext occupy ~3-43% of the
+   width on the left side, with the subtext ending at ~60% of the height. */
+.hero-banner-cta {
+  position: absolute;
+  left: 3%;
+  top: 68%;
+  display: flex;
+  gap: 12px;
+  z-index: 2;
+}
+.hero-banner-cta .btn-lg { padding: 14px 22px; font-size: 15px; }
 
 /* ========== ROUND CATEGORY STRIP ========== */
 .cat-strip-wrap {
-  padding: 8px 0 32px;
+  padding: 24px 0 32px;
 }
 .cat-strip {
   background: var(--surface);
@@ -1213,8 +1177,6 @@ p { margin: 0; }
   .vendor-grid { grid-template-columns: repeat(2, 1fr); }
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
   .cat-strip { grid-template-columns: repeat(4, 1fr); }
-  .hero-title { font-size: clamp(40px, 6vw, 56px); }
-  .hero-grid { gap: 28px; }
 }
 
 @media (max-width: 768px) {
@@ -1234,18 +1196,13 @@ p { margin: 0; }
 
   .announce-bar { font-size: 12px; padding: 6px 12px; }
 
-  /* Hero stacks on mobile - illustration on top, copy below */
-  .hero { padding: 16px 0 24px; }
-  .hero-grid { grid-template-columns: 1fr; gap: 20px; }
-  .hero-title { font-size: clamp(38px, 11vw, 56px); }
-  .hero-sub { font-size: 15px; }
-  .hero-search { flex-direction: column; padding: 6px; gap: 4px; }
-  .hero-search .field { width: 100%; }
-  .hero-search .divider { display: none; }
-  .hero-search .btn { width: 100%; }
-  .hero-cta-row { flex-direction: row; gap: 10px; }
-  .hero-cta-row .btn { flex: 1; padding: 12px 8px; font-size: 14px; }
-  .hero-image { order: -1; margin: 0 -16px; border-radius: 0; }
+  /* Mobile hero: banner is the image, buttons sit underneath in a 2-col row */
+  .hero-banner-cta {
+    position: static;
+    padding: 12px 16px 0;
+    margin-top: 0;
+  }
+  .hero-banner-cta .btn { flex: 1; padding: 12px 8px; font-size: 14px; }
 
   /* Round categories - 4 per row on mobile */
   .cat-strip {

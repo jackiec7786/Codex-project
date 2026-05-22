@@ -6,22 +6,20 @@ import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
 import { CATEGORIES, FEATURED_LISTINGS, LATEST_LISTINGS } from '@/lib/data';
 import {
-  Search, MapPin, Plus, ArrowRight,
-  Wrench, Smartphone, Home as HomeIcon, Tag, Leaf, Car, Briefcase, MoreHorizontal,
-  ShieldCheck, Zap, Users, GraduationCap,
+  Plus, ArrowRight,
+  Wrench, Smartphone, Home as HomeIcon, Tag, Sprout, Car, Briefcase, MoreHorizontal,
+  ShieldCheck, Zap, Users,
 } from 'lucide-react';
 
-/* 8-category strip matching the reference screenshot style.
-   Picked to keep SpiceClassifieds differentiators (SGU + Farm-to-Table)
-   visible above the fold instead of buried behind "More". */
+/* 8-category strip matching the reference screenshot exactly */
 const HOMEPAGE_CATS = [
-  { label: 'Services',     listings: 24,  color: 'green',  Icon: Wrench,        href: '/listings?category=services' },
-  { label: 'Electronics',  listings: 186, color: 'red',    Icon: Smartphone,    href: '/listings?category=electronics' },
-  { label: 'Rentals',      listings: 312, color: 'green',  Icon: HomeIcon,      href: '/listings?category=real-estate' },
-  { label: 'For Sale',     listings: 451, color: 'yellow', Icon: Tag,           href: '/listings' },
-  { label: 'Farm to Table', listings: 38, color: 'green',  Icon: Leaf,          href: '/listings?category=farm-to-table' },
-  { label: 'Vehicles',     listings: 76,  color: 'red',    Icon: Car,           href: '/listings?category=vehicles' },
-  { label: 'SGU Hub',      listings: 22,  color: 'green',  Icon: GraduationCap, href: '/listings?category=sgu' },
+  { label: 'Services',     listings: 24,  color: 'green',  Icon: Wrench,         href: '/listings?category=services' },
+  { label: 'Electronics',  listings: 186, color: 'red',    Icon: Smartphone,     href: '/listings?category=electronics' },
+  { label: 'Rentals',      listings: 312, color: 'green',  Icon: HomeIcon,       href: '/listings?category=real-estate' },
+  { label: 'For Sale',     listings: 451, color: 'yellow', Icon: Tag,            href: '/listings' },
+  { label: 'Home & Garden', listings: 98, color: 'green',  Icon: Sprout,         href: '/listings?category=home-garden' },
+  { label: 'Vehicles',     listings: 76,  color: 'red',    Icon: Car,            href: '/listings?category=vehicles' },
+  { label: 'Jobs',         listings: 53,  color: 'green',  Icon: Briefcase,      href: '/listings?category=jobs' },
   { label: 'More',         listings: 0,   color: 'gray',   Icon: MoreHorizontal, href: '/listings', isMore: true },
 ];
 
@@ -48,55 +46,27 @@ export default function HomePage() {
       <AnnounceBar />
       <Header />
 
-      {/* Hero: two-column. Real HTML text + buttons on left, illustration on right */}
-      <section className="hero">
-        <div className="container">
-          <div className="hero-grid">
-            <div className="hero-copy">
-              <h1 className="hero-title">
-                <span className="hero-red">Find it.</span>
-                <span className="hero-green">List it.</span>
-                <span className="hero-green">Love Local.</span>
-              </h1>
-              <p className="hero-sub">
-                Grenada&apos;s trusted marketplace for local services, rentals, electronics and more.
-              </p>
-
-              <div className="hero-search">
-                <div className="field">
-                  <Search size={16} />
-                  <input placeholder="Search for anything..." />
-                </div>
-                <div className="divider desktop-only" />
-                <div className="field desktop-only">
-                  <MapPin size={16} />
-                  <input placeholder="All of Grenada" />
-                </div>
-                <Link href="/listings" className="btn btn-secondary">Search</Link>
-              </div>
-
-              <div className="hero-cta-row">
-                <Link href="/listings" className="btn btn-primary btn-lg">Browse Categories</Link>
-                <Link href="/listings/create" className="btn btn-yellow btn-lg">
-                  <Plus size={16} /> Post an Ad
-                </Link>
-              </div>
-            </div>
-
-            <div className="hero-image">
-              <Image
-                src="/hero-illustration.webp"
-                alt="Caribbean scene with palm tree, mountains, and Grenadian coastal village"
-                width={1428}
-                height={793}
-                priority
-              />
-            </div>
+      {/* Hero: full banner image with real CTA buttons overlaid on the cream area */}
+      <section className="hero-banner-wrap">
+        <div className="hero-banner-stage">
+          <Image
+            src="/hero-banner.webp"
+            alt="Find it. List it. Love Local. — Grenada's trusted marketplace"
+            width={1983}
+            height={793}
+            priority
+            className="hero-banner-img"
+          />
+          <div className="hero-banner-cta">
+            <Link href="/listings" className="btn btn-primary btn-lg">Browse Categories</Link>
+            <Link href="/listings/create" className="btn btn-yellow btn-lg">
+              <Plus size={16} /> Post an Ad
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Round colored category strip - 8 items */}
+      {/* Round colored category strip */}
       <section className="cat-strip-wrap">
         <div className="container">
           <div className="cat-strip">
@@ -118,12 +88,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Listings - 5 column row */}
+      {/* Featured Listings - 5 column row to match screenshot */}
       <section className="section section-tight">
         <div className="container">
           <div className="section-head">
             <h2>Featured Listings</h2>
-            <Link href="/listings?featured=true">View all →</Link>
+            <Link href="/listings?featured=true">View all</Link>
           </div>
           <div className="listing-grid cols-5">
             {FEATURED_LISTINGS.map((l) => <ListingCard key={l.id} listing={l} />)}
@@ -132,7 +102,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Latest Listings */}
       <section className="section">
         <div className="container">
           <div className="section-head">
