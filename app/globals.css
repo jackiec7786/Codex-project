@@ -1187,8 +1187,9 @@ p { margin: 0; }
   .hero-search .field { width: 100%; }
   .hero-search .divider { display: none; }
   .hero-search .btn { width: 100%; }
-  .hero-quick-actions { flex-direction: column; }
-  .hero-quick-actions .btn { width: 100%; }
+  /* Browse + Post sit side-by-side on mobile, each 50% */
+  .hero-quick-actions { flex-direction: row; gap: 10px; }
+  .hero-quick-actions .btn { flex: 1; padding: 12px 8px; font-size: 14px; }
 
   .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .cat-card { padding: 12px; }
