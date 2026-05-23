@@ -13,7 +13,7 @@ export default function Header() {
       <header className="site-header">
         <div className="container">
           <Link href="/" className="brand" aria-label="SpiceClassifieds home">
-            <Image src="/logo.png" alt="Spice Classifieds" width={160} height={48} priority style={{ objectFit: 'contain' }} />
+            <Image src="/logo.png" alt="Spice Classifieds" width={200} height={60} priority style={{ objectFit: 'contain' }} />
           </Link>
 
           <nav className="nav-links desktop-only">

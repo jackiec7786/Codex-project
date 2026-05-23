@@ -1,23 +1,24 @@
-import AdminHeader from '@/components/AdminHeader';
-import AdminPageHeader from '@/components/AdminPageHeader';
-import { Receipt } from 'lucide-react';
-
-export default function AdminTransactionsPage() {
+export default function AdminPage() {
   return (
     <>
-      <AdminHeader title="Transactions" />
+      <div className="adm-page-head">
+        <div>
+          <h1 className="adm-page-title">Transactions</h1>
+          <p className="adm-page-sub">Audit transaction history across the platform.</p>
+        </div>
+        <div className="adm-page-actions">
+          <button className="adm-btn-ghost">Export</button>
+        </div>
+      </div>
 
-      <div className="admin-page-content">
-        <AdminPageHeader
-          section="FINANCE"
-          title="Transactions"
-          description="Audit transaction history across the platform."
-          icon={<Receipt size={26} />}
-        />
-
-        <div className="admin-card">
-          <h2>Transactions</h2>
-          <div className="admin-empty">No transactions in this window</div>
+      <div className="adm-card">
+        <div className="adm-card-head">
+          <div className="adm-card-title">Transactions</div>
+          <span className="adm-card-meta">XCD 4,820 this month</span>
+        </div>
+        <div className="adm-empty">
+          <div className="adm-empty-icon">📋</div>
+          Nothing here yet — items will appear as activity comes in.
         </div>
       </div>
     </>

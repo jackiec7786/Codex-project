@@ -1,23 +1,24 @@
-import AdminHeader from '@/components/AdminHeader';
-import AdminPageHeader from '@/components/AdminPageHeader';
-import { MessageSquare } from 'lucide-react';
-
-export default function AdminReviewsPage() {
+export default function AdminPage() {
   return (
     <>
-      <AdminHeader title="Reviews" />
+      <div className="adm-page-head">
+        <div>
+          <h1 className="adm-page-title">Reviews</h1>
+          <p className="adm-page-sub">Moderate buyer and seller reviews.</p>
+        </div>
+        <div className="adm-page-actions">
+          <button className="adm-btn-ghost">Export</button>
+        </div>
+      </div>
 
-      <div className="admin-page-content">
-        <AdminPageHeader
-          section="PEOPLE"
-          title="Reviews"
-          description="Moderate buyer and seller reviews."
-          icon={<MessageSquare size={26} />}
-        />
-
-        <div className="admin-card">
-          <h2>Reviews</h2>
-          <div className="admin-empty">No reviews flagged</div>
+      <div className="adm-card">
+        <div className="adm-card-head">
+          <div className="adm-card-title">Reviews</div>
+          <span className="adm-card-meta">8 pending moderation</span>
+        </div>
+        <div className="adm-empty">
+          <div className="adm-empty-icon">📋</div>
+          Nothing here yet — items will appear as activity comes in.
         </div>
       </div>
     </>

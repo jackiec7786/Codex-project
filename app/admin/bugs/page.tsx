@@ -1,23 +1,24 @@
-import AdminHeader from '@/components/AdminHeader';
-import AdminPageHeader from '@/components/AdminPageHeader';
-import { Bug } from 'lucide-react';
-
-export default function AdminBugsPage() {
+export default function AdminPage() {
   return (
     <>
-      <AdminHeader title="Bugs" />
+      <div className="adm-page-head">
+        <div>
+          <h1 className="adm-page-title">Bug reports</h1>
+          <p className="adm-page-sub">Track product issues reported by users and staff.</p>
+        </div>
+        <div className="adm-page-actions">
+          <button className="adm-btn-ghost">Export</button>
+        </div>
+      </div>
 
-      <div className="admin-page-content">
-        <AdminPageHeader
-          section="TRUST"
-          title="Bug reports"
-          description="Track product issues reported by users and staff."
-          icon={<Bug size={26} />}
-        />
-
-        <div className="admin-card">
-          <h2>Bug reports</h2>
-          <div className="admin-empty">No open bug reports</div>
+      <div className="adm-card">
+        <div className="adm-card-head">
+          <div className="adm-card-title">Bug reports</div>
+          <span className="adm-card-meta">1 open bug report</span>
+        </div>
+        <div className="adm-empty">
+          <div className="adm-empty-icon">📋</div>
+          Nothing here yet — items will appear as activity comes in.
         </div>
       </div>
     </>
