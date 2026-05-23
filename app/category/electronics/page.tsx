@@ -1,51 +1,32 @@
-import AnnounceBar from '@/components/AnnounceBar';
-import Header from '@/components/Header';
-import MobileBottomNav from '@/components/MobileBottomNav';
-import CategoryHero from '@/components/CategoryHero';
-import CategorySubNav from '@/components/CategorySubNav';
-import CategorySearchPanel from '@/components/CategorySearchPanel';
-import CategoryToolbar from '@/components/CategoryToolbar';
-import ListingCard from '@/components/ListingCard';
-import { LATEST_LISTINGS } from '@/lib/data';
+import StandardCategory from '@/components/StandardCategory';
+import { Smartphone } from 'lucide-react';
+import { LATEST_LISTINGS, FEATURED_LISTINGS } from '@/lib/data';
 
 const SUBCATS = [
-  { label: 'All Electronics', slug: 'all' },
-  { label: 'Accessories', emoji: '🔌', slug: 'accessories' },
-  { label: 'Audio & Video', emoji: '🎧', slug: 'audio-video' },
-  { label: 'Cameras', emoji: '📷', slug: 'cameras' },
-  { label: 'Computers', emoji: '💻', slug: 'computers' },
-  { label: 'Phones', emoji: '📱', slug: 'phones' },
-  { label: 'TVs', emoji: '📺', slug: 'tvs' },
+  { label: 'Accessories', icon: '🔌', count: 54 },
+  { label: 'Audio & Video', icon: '🎧', count: 38 },
+  { label: 'Cameras', icon: '📷', count: 22 },
+  { label: 'Computers', icon: '💻', count: 61 },
+  { label: 'Phones', icon: '📱', count: 74 },
+  { label: 'TVs', icon: '📺', count: 38 },
 ];
 
-export default function ElectronicsCategoryPage() {
-  const listings = LATEST_LISTINGS.slice(0, 4);
-
+export default function CategoryPage() {
   return (
-    <div className="category-page-wrap">
-      <AnnounceBar />
-      <Header />
-
-      <CategoryHero
-        emoji="📱"
-        title="Electronics"
-        description="Discover the latest gadgets, devices, and tech accessories from trusted sellers in your community"
-        sellHref="/listings/create?category=electronics"
-        sellLabel="Sell Electronics"
-        browseHref="/listings?category=electronics"
-      />
-
-      <CategorySubNav items={SUBCATS} />
-      <CategorySearchPanel />
-      <CategoryToolbar resultsCount={4} searchTime="11ms" activeChip="Category: Electronics" />
-
-      <div className="container">
-        <div className="listing-grid">
-          {listings.map((l) => <ListingCard key={l.id} listing={l} />)}
-        </div>
-      </div>
-
-      <MobileBottomNav />
-    </div>
+    <StandardCategory
+      slug="electronics"
+      name="Electronics"
+      Icon={Smartphone}
+      color="red"
+      totalListings={287}
+      verifiedSellers={19}
+      updatedAgo="1h ago"
+      subcats={SUBCATS}
+      featured={FEATURED_LISTINGS.slice(0, 4)}
+      listings={LATEST_LISTINGS.slice(0, 4)}
+      postCtaLabel="Sell Electronics"
+      sellCtaTitle="Got electronics to sell?"
+      sellCtaDesc="List for free in under 2 minutes — verified buyers reach out within hours."
+    />
   );
 }
