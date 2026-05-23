@@ -1,23 +1,24 @@
-import AdminHeader from '@/components/AdminHeader';
-import AdminPageHeader from '@/components/AdminPageHeader';
-import { CreditCard } from 'lucide-react';
-
-export default function AdminPaymentsPage() {
+export default function AdminPage() {
   return (
     <>
-      <AdminHeader title="Payments" />
+      <div className="adm-page-head">
+        <div>
+          <h1 className="adm-page-title">Payments</h1>
+          <p className="adm-page-sub">Monitor payment flow and resolve disputes.</p>
+        </div>
+        <div className="adm-page-actions">
+          <button className="adm-btn-ghost">Export</button>
+        </div>
+      </div>
 
-      <div className="admin-page-content">
-        <AdminPageHeader
-          section="FINANCE"
-          title="Payments"
-          description="Monitor payment flow and resolve disputes."
-          icon={<CreditCard size={26} />}
-        />
-
-        <div className="admin-card">
-          <h2>Payments</h2>
-          <div className="admin-empty">No payments to review</div>
+      <div className="adm-card">
+        <div className="adm-card-head">
+          <div className="adm-card-title">Payments</div>
+          <span className="adm-card-meta">2 disputes open</span>
+        </div>
+        <div className="adm-empty">
+          <div className="adm-empty-icon">📋</div>
+          Nothing here yet — items will appear as activity comes in.
         </div>
       </div>
     </>

@@ -1,23 +1,24 @@
-import AdminHeader from '@/components/AdminHeader';
-import AdminPageHeader from '@/components/AdminPageHeader';
-import { ShieldCheck } from 'lucide-react';
-
-export default function AdminVerifyPage() {
+export default function AdminPage() {
   return (
     <>
-      <AdminHeader title="Verify" />
+      <div className="adm-page-head">
+        <div>
+          <h1 className="adm-page-title">Verification</h1>
+          <p className="adm-page-sub">Review verification submissions for ID and business proofs.</p>
+        </div>
+        <div className="adm-page-actions">
+          <button className="adm-btn-ghost">Export</button>
+        </div>
+      </div>
 
-      <div className="admin-page-content">
-        <AdminPageHeader
-          section="TRUST"
-          title="Verification"
-          description="Review verification submissions for ID and business proofs."
-          icon={<ShieldCheck size={26} />}
-        />
-
-        <div className="admin-card">
-          <h2>Verification</h2>
-          <div className="admin-empty">No pending verification requests</div>
+      <div className="adm-card">
+        <div className="adm-card-head">
+          <div className="adm-card-title">Verification</div>
+          <span className="adm-card-meta">5 pending verification</span>
+        </div>
+        <div className="adm-empty">
+          <div className="adm-empty-icon">📋</div>
+          Nothing here yet — items will appear as activity comes in.
         </div>
       </div>
     </>

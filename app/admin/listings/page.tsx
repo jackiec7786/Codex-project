@@ -1,23 +1,24 @@
-import AdminHeader from '@/components/AdminHeader';
-import AdminPageHeader from '@/components/AdminPageHeader';
-import { Package } from 'lucide-react';
-
-export default function AdminListingsPage() {
+export default function AdminPage() {
   return (
     <>
-      <AdminHeader title="Listings" />
+      <div className="adm-page-head">
+        <div>
+          <h1 className="adm-page-title">Listings</h1>
+          <p className="adm-page-sub">Inspect and manage all marketplace listings.</p>
+        </div>
+        <div className="adm-page-actions">
+          <button className="adm-btn-ghost">Export</button>
+        </div>
+      </div>
 
-      <div className="admin-page-content">
-        <AdminPageHeader
-          section="CONTENT"
-          title="Listings"
-          description="Inspect and manage all marketplace listings."
-          icon={<Package size={26} />}
-        />
-
-        <div className="admin-card">
-          <h2>Listings</h2>
-          <div className="admin-empty">No listings to review</div>
+      <div className="adm-card">
+        <div className="adm-card-head">
+          <div className="adm-card-title">Listings</div>
+          <span className="adm-card-meta">1,247 total listings</span>
+        </div>
+        <div className="adm-empty">
+          <div className="adm-empty-icon">📋</div>
+          Nothing here yet — items will appear as activity comes in.
         </div>
       </div>
     </>
