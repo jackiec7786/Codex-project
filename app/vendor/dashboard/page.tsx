@@ -1,153 +1,122 @@
 import Link from 'next/link';
-import AnnounceBar from '@/components/AnnounceBar';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import {
-  LayoutDashboard, List, MessageCircle, Heart, BarChart3,
-  Settings, Plus, Eye, MessageSquare, Star, TrendingUp, Zap
+  Eye, MessageSquare, DollarSign, Star, TrendingUp, TrendingDown,
+  MessageCircle, Heart, Zap, ChevronDown,
 } from 'lucide-react';
 
-export default function VendorDashboardPage() {
+const TOP_LISTINGS = [
+  { emoji: '🏠', name: '2 Bed Apartment in Grand Anse', views: 412, leads: 8, status: 'featured' },
+  { emoji: '📱', name: 'iPhone 13 Pro 128GB', views: 247, leads: 5, status: 'active' },
+  { emoji: '⚡', name: 'Electrical Installation Service', views: 189, leads: 12, status: 'active' },
+  { emoji: '🛋️', name: 'Sectional Sofa - Like New', views: 156, leads: 3, status: 'active' },
+];
+
+const ATTENTION = [
+  { Icon: MessageCircle, color: 'red',   title: '3 new buyer messages', sub: 'Reply within 1 hour to maintain top response rating', time: '12m' },
+  { Icon: Heart,         color: 'green', title: '8 new saves on your listings', sub: 'Sectional Sofa and iPhone are trending', time: '2h' },
+  { Icon: Zap,           color: '',      title: 'Boost expires in 2 days', sub: 'Renew "2 Bed Apartment" featured slot', time: '1d' },
+];
+
+export default function VendorOverviewPage() {
   return (
     <>
-      <AnnounceBar />
-      <Header />
+      <div className="vendor-page-head">
+        <div>
+          <h1 className="vendor-page-title">Welcome back, Telligent 👋</h1>
+          <p className="vendor-page-sub">Here&apos;s how your storefront performed today.</p>
+        </div>
+        <button className="vendor-period-pill">
+          Last 30 days <ChevronDown size={14} />
+        </button>
+      </div>
 
-      <div className="container">
-        <div className="dashboard-layout">
-          <aside className="dash-sidebar">
-            <div className="avatar" style={{ width: 64, height: 64, fontSize: 22 }}>TL</div>
-            <div className="dash-user-name">Telligent LTD</div>
-            <Link href="/profile" className="dash-view-profile">View Storefront</Link>
-            <Link href="/listings/create" className="dash-post-ad-btn">
-              <Plus size={16} /> Post New Listing
-            </Link>
-            <ul className="dash-nav">
-              <li className="active"><LayoutDashboard size={16} /> Overview</li>
-              <li><List size={16} /> My Listings <span className="badge-count">12</span></li>
-              <li><MessageCircle size={16} /> Messages <span className="badge-count">3</span></li>
-              <li><Heart size={16} /> Favorites</li>
-              <li><BarChart3 size={16} /> Analytics</li>
-              <li><Zap size={16} /> Boost Center</li>
-              <li><Settings size={16} /> Settings</li>
-            </ul>
-          </aside>
-
-          <div>
-            <div className="dash-header">
-              <h1 className="dash-title">Vendor Dashboard</h1>
-              <div className="dash-period">Last 30 days ▾</div>
-            </div>
-
-            <div className="stat-grid">
-              <div className="stat-card">
-                <div>
-                  <div className="stat-value">12</div>
-                  <div className="stat-label">Active Listings</div>
-                </div>
-                <div className="stat-icon green"><List size={18} /></div>
-              </div>
-              <div className="stat-card">
-                <div>
-                  <div className="stat-value">3,847</div>
-                  <div className="stat-label">Total Views</div>
-                </div>
-                <div className="stat-icon blue"><Eye size={18} /></div>
-              </div>
-              <div className="stat-card">
-                <div>
-                  <div className="stat-value">142</div>
-                  <div className="stat-label">Leads This Month</div>
-                </div>
-                <div className="stat-icon yellow"><MessageSquare size={18} /></div>
-              </div>
-              <div className="stat-card">
-                <div>
-                  <div className="stat-value">4.9</div>
-                  <div className="stat-label">Avg. Rating</div>
-                </div>
-                <div className="stat-icon red"><Star size={18} /></div>
-              </div>
-            </div>
-
-            <div className="dash-section">
-              <div className="dash-section-header">
-                <h3>Views over time</h3>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, color: 'var(--brand-green)', fontWeight: 700, fontSize: 13 }}>
-                  <TrendingUp size={14} /> +18% vs last month
-                </span>
-              </div>
-              <div className="chart-placeholder">
-                <svg className="chart-svg" viewBox="0 0 400 180" preserveAspectRatio="none">
-                  <defs>
-                    <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#0F7A5A" stopOpacity="0.3" />
-                      <stop offset="100%" stopColor="#0F7A5A" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M0,140 L40,120 L80,100 L120,110 L160,80 L200,70 L240,60 L280,75 L320,45 L360,30 L400,20 L400,180 L0,180 Z" fill="url(#grad)" />
-                  <path d="M0,140 L40,120 L80,100 L120,110 L160,80 L200,70 L240,60 L280,75 L320,45 L360,30 L400,20" fill="none" stroke="#0F7A5A" strokeWidth="2" />
-                </svg>
-              </div>
-            </div>
-
-            <div className="dash-section">
-              <div className="dash-section-header">
-                <h3>Your top listings</h3>
-                <Link href="/listings" style={{ color: 'var(--brand-red)', fontWeight: 600, fontSize: 13 }}>View all</Link>
-              </div>
-
-              {[
-                { e: '🏠', t: '2 Bed Apartment in Grand Anse', v: 412, m: '8 messages', s: 'featured' },
-                { e: '📱', t: 'iPhone 13 Pro 128GB', v: 247, m: '5 messages', s: 'active' },
-                { e: '⚡', t: 'Electrical Installation Service', v: 189, m: '12 messages', s: 'active' },
-                { e: '🛋️', t: 'Sectional Sofa - Like New', v: 156, m: '3 messages', s: 'active' },
-                { e: '🚗', t: 'Honda Civic 2018 — One Owner', v: 0, m: 'Not published', s: 'draft' },
-              ].map((row) => (
-                <div key={row.t} className="dash-listing-row">
-                  <div className="dash-listing-thumb">{row.e}</div>
-                  <div className="dash-listing-info">
-                    <div className="title">{row.t}</div>
-                    <div className="meta">{row.v} views · {row.m}</div>
-                  </div>
-                  <span className={`status-pill ${row.s}`}>{row.s}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="dash-section">
-              <div className="dash-section-header">
-                <h3>Boost Center</h3>
-              </div>
-              <p style={{ color: 'var(--text-muted)', fontSize: 14, marginBottom: 16 }}>
-                Featured listings get up to 5x more views and stay at the top of category pages.
-              </p>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
-                {[
-                  { p: '1 week', x: '$5', d: 'Try it out' },
-                  { p: '4 weeks', x: '$15', d: 'Most popular', highlight: true },
-                  { p: '12 weeks', x: '$36', d: 'Best value' },
-                ].map((pkg) => (
-                  <div key={pkg.p} style={{
-                    background: pkg.highlight ? 'var(--brand-green-light)' : 'var(--surface)',
-                    border: pkg.highlight ? '1.5px solid var(--brand-green)' : '1px solid var(--border)',
-                    borderRadius: 12, padding: 18, textAlign: 'center',
-                  }}>
-                    <div style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 6 }}>{pkg.p}</div>
-                    <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--brand-green)' }}>XCD {pkg.x}</div>
-                    <div style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 12 }}>{pkg.d}</div>
-                    <button className={pkg.highlight ? 'btn btn-secondary btn-block' : 'btn btn-outline-green btn-block'}>
-                      Boost a listing
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+      <div className="vendor-kpi-grid">
+        <div className="vendor-kpi">
+          <div className="vendor-kpi-icon blue"><Eye size={18} /></div>
+          <div className="vendor-kpi-label">Total Views</div>
+          <div className="vendor-kpi-value">3,847</div>
+          <span className="vendor-kpi-delta up"><TrendingUp size={12} /> +18% vs last month</span>
+        </div>
+        <div className="vendor-kpi">
+          <div className="vendor-kpi-icon yellow"><MessageSquare size={18} /></div>
+          <div className="vendor-kpi-label">Leads This Month</div>
+          <div className="vendor-kpi-value">142</div>
+          <span className="vendor-kpi-delta up"><TrendingUp size={12} /> +24% vs last month</span>
+        </div>
+        <div className="vendor-kpi">
+          <div className="vendor-kpi-icon green"><DollarSign size={18} /></div>
+          <div className="vendor-kpi-label">Revenue (XCD)</div>
+          <div className="vendor-kpi-value">$4,820</div>
+          <span className="vendor-kpi-delta up"><TrendingUp size={12} /> +12% vs last month</span>
+        </div>
+        <div className="vendor-kpi">
+          <div className="vendor-kpi-icon red"><Star size={18} /></div>
+          <div className="vendor-kpi-label">Avg. Rating</div>
+          <div className="vendor-kpi-value">4.9</div>
+          <span className="vendor-kpi-delta down"><TrendingDown size={12} /> -0.1 vs last month</span>
         </div>
       </div>
 
-      <Footer />
+      <div className="vendor-two-col">
+        <div className="vendor-card">
+          <div className="vendor-card-head">
+            <div className="vendor-card-title">Views over time</div>
+            <span className="vendor-kpi-delta up"><TrendingUp size={12} /> +18%</span>
+          </div>
+          <div className="vendor-chart">
+            <svg viewBox="0 0 400 200" style={{ width: '100%', height: '100%' }} preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="v-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#0F7A5A" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#0F7A5A" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <path d="M0,160 L40,140 L80,120 L120,130 L160,90 L200,80 L240,70 L280,85 L320,55 L360,40 L400,30 L400,200 L0,200 Z" fill="url(#v-grad)" />
+              <path d="M0,160 L40,140 L80,120 L120,130 L160,90 L200,80 L240,70 L280,85 L320,55 L360,40 L400,30" fill="none" stroke="#0F7A5A" strokeWidth="2.5" />
+            </svg>
+          </div>
+        </div>
+
+        <div className="vendor-card">
+          <div className="vendor-card-head">
+            <div className="vendor-card-title">Needs attention</div>
+          </div>
+          {ATTENTION.map((a) => {
+            const Icon = a.Icon;
+            return (
+              <div key={a.title} className="vendor-attention">
+                <div className={`vendor-attention-icon ${a.color}`}><Icon size={16} /></div>
+                <div className="vendor-attention-text">
+                  <div className="vendor-attention-title">{a.title}</div>
+                  <div className="vendor-attention-sub">{a.sub}</div>
+                </div>
+                <div className="vendor-attention-time">{a.time}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="vendor-card">
+        <div className="vendor-card-head">
+          <div className="vendor-card-title">Top performing listings</div>
+          <Link href="/vendor/dashboard/listings" className="vendor-card-link">View all →</Link>
+        </div>
+        {TOP_LISTINGS.map((l) => (
+          <div key={l.name} className="vendor-listing-row">
+            <div className="vendor-listing-thumb">{l.emoji}</div>
+            <div>
+              <div className="vendor-listing-name">{l.name}</div>
+              <div className="vendor-listing-meta">{l.leads} leads this month</div>
+            </div>
+            <div className="vendor-listing-stat">
+              <strong>{l.views.toLocaleString()}</strong>
+              <span>VIEWS</span>
+            </div>
+            <span className={`vendor-status ${l.status}`}>{l.status}</span>
+          </div>
+        ))}
+      </div>
     </>
   );
 }

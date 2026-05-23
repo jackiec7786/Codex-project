@@ -4,6 +4,7 @@ import AnnounceBar from '@/components/AnnounceBar';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
+import FeaturedVendorsCarousel from '@/components/FeaturedVendorsCarousel';
 import { CATEGORIES, FEATURED_LISTINGS, LATEST_LISTINGS } from '@/lib/data';
 import {
   Plus, ArrowRight,
@@ -85,6 +86,17 @@ export default function HomePage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Featured Vendors carousel */}
+      <section className="section section-tight">
+        <div className="container">
+          <div className="section-head">
+            <h2>Featured Vendors</h2>
+            <Link href="/vendors">View All</Link>
+          </div>
+          <FeaturedVendorsCarousel />
         </div>
       </section>
 
