@@ -1,51 +1,32 @@
-import AnnounceBar from '@/components/AnnounceBar';
-import Header from '@/components/Header';
-import MobileBottomNav from '@/components/MobileBottomNav';
-import CategoryHero from '@/components/CategoryHero';
-import CategorySubNav from '@/components/CategorySubNav';
-import CategorySearchPanel from '@/components/CategorySearchPanel';
-import CategoryToolbar from '@/components/CategoryToolbar';
-import ListingCard from '@/components/ListingCard';
-import { LATEST_LISTINGS } from '@/lib/data';
+import StandardCategory from '@/components/StandardCategory';
+import { Car } from 'lucide-react';
+import { LATEST_LISTINGS, FEATURED_LISTINGS } from '@/lib/data';
 
 const SUBCATS = [
-  { label: 'All Vehicles', slug: 'all' },
-  { label: 'ATVs',  emoji: '🏁', slug: 'atvs' },
-  { label: 'Boats', emoji: '⛵', slug: 'boats' },
-  { label: 'Cars',  emoji: '🚗', slug: 'cars' },
-  { label: 'Motorcycles', emoji: '🏍️', slug: 'motorcycles' },
-  { label: 'Trucks', emoji: '🚚', slug: 'trucks' },
-  { label: 'Parts', emoji: '🔧', slug: 'parts' },
+  { label: 'ATVs', icon: '🏁', count: 12 },
+  { label: 'Boats', icon: '⛵', count: 24 },
+  { label: 'Cars', icon: '🚗', count: 186 },
+  { label: 'Motorcycles', icon: '🏍️', count: 58 },
+  { label: 'Trucks', icon: '🚚', count: 47 },
+  { label: 'Parts', icon: '🔧', count: 85 },
 ];
 
-export default function VehiclesCategoryPage() {
-  const listings = LATEST_LISTINGS.slice(0, 2);
-
+export default function CategoryPage() {
   return (
-    <div className="category-page-wrap">
-      <AnnounceBar />
-      <Header />
-
-      <CategoryHero
-        emoji="🚗"
-        title="Vehicles"
-        description="Find your next ride or sell your current vehicle to trusted buyers in your area"
-        sellHref="/listings/create?category=vehicles"
-        sellLabel="Sell Your Vehicles"
-        browseHref="/listings?category=vehicles"
-      />
-
-      <CategorySubNav items={SUBCATS} />
-      <CategorySearchPanel />
-      <CategoryToolbar resultsCount={2} searchTime="20ms" activeChip="Category: Vehicles" />
-
-      <div className="container">
-        <div className="listing-grid">
-          {listings.map((l) => <ListingCard key={l.id} listing={l} />)}
-        </div>
-      </div>
-
-      <MobileBottomNav />
-    </div>
+    <StandardCategory
+      slug="vehicles"
+      name="Vehicles"
+      Icon={Car}
+      color="green"
+      totalListings={412}
+      verifiedSellers={28}
+      updatedAgo="2h ago"
+      subcats={SUBCATS}
+      featured={FEATURED_LISTINGS.slice(0, 4)}
+      listings={LATEST_LISTINGS.slice(0, 4)}
+      postCtaLabel="Sell a Vehicle"
+      sellCtaTitle="Selling a vehicle?"
+      sellCtaDesc="Reach 312 active buyers actively searching in Grenada this week."
+    />
   );
 }
