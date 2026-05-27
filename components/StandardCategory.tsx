@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { LucideIcon } from 'lucide-react';
+import type { ComponentType, SVGProps } from 'react';
 import { Search, Plus, SlidersHorizontal, ChevronDown, Tag, Store } from 'lucide-react';
 import AnnounceBar from '@/components/AnnounceBar';
 import Header from '@/components/Header';
@@ -17,7 +17,7 @@ export type Subcat = {
 export type StandardCategoryProps = {
   slug: string;
   name: string;
-  Icon: LucideIcon;
+  Icon: ComponentType<SVGProps<SVGSVGElement> & { size?: number }>;
   color: 'green' | 'red' | 'yellow';
   totalListings: number;
   verifiedSellers: number;

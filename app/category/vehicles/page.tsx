@@ -1,5 +1,5 @@
 import StandardCategory from '@/components/StandardCategory';
-import { Car } from 'lucide-react';
+import { VehiclesIcon } from '@/components/CategoryIcons';
 import { LATEST_LISTINGS, FEATURED_LISTINGS } from '@/lib/data';
 
 const SUBCATS = [
@@ -16,7 +16,7 @@ export default function CategoryPage() {
     <StandardCategory
       slug="vehicles"
       name="Vehicles"
-      Icon={Car}
+      Icon={VehiclesIcon}
       color="green"
       totalListings={412}
       verifiedSellers={28}

@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Search, MapPin, Sprout, Clock, SlidersHorizontal, ChevronDown } from 'lucide-react';
+import { Search, MapPin, Clock, SlidersHorizontal, ChevronDown } from 'lucide-react';
+import { FarmToTableIcon } from '@/components/CategoryIcons';
 import AnnounceBar from '@/components/AnnounceBar';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -29,7 +30,7 @@ export default function FarmToTablePage() {
       <section className="cat-farm-hero">
         <div className="container cat-farm-hero-inner">
           <div className="cat-farm-hero-tag">
-            <Sprout size={14} /> Farm to Table Marketplace
+            <FarmToTableIcon size={14} /> Farm to Table Marketplace
           </div>
           <h1 className="cat-farm-hero-title">
             Fresh, local, direct from <span className="accent">Grenadian farmers</span>
@@ -76,7 +77,7 @@ export default function FarmToTablePage() {
         <div className="cat-filter-bar">
           <div>
             <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--text)', marginBottom: 4, display: 'inline-flex', alignItems: 'center', gap: 10 }}>
-              <Sprout size={20} color="var(--brand-green)" />
+              <FarmToTableIcon size={20} color="var(--brand-green)" />
               Farm-fresh listings
             </h2>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginLeft: 14, padding: '4px 10px', background: 'var(--brand-green-light)', color: 'var(--brand-green)', borderRadius: 999, fontSize: 12, fontWeight: 700 }}>
@@ -108,7 +109,7 @@ export default function FarmToTablePage() {
         {/* Farmer CTA */}
         <div className="cat-sell-cta" style={{ background: 'linear-gradient(135deg, var(--brand-yellow-light) 0%, var(--surface) 100%)' }}>
           <div className="cat-sell-cta-icon" style={{ background: 'var(--brand-green)', color: 'white' }}>
-            <Sprout size={28} />
+            <FarmToTableIcon size={28} />
           </div>
           <div className="cat-sell-cta-text">
             <h3>Are you a farmer or artisan?</h3>
