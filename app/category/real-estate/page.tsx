@@ -1,5 +1,5 @@
 import StandardCategory from '@/components/StandardCategory';
-import { Home } from 'lucide-react';
+import { RealEstateIcon } from '@/components/CategoryIcons';
 import { LATEST_LISTINGS, FEATURED_LISTINGS } from '@/lib/data';
 
 const SUBCATS = [
@@ -15,7 +15,7 @@ export default function CategoryPage() {
     <StandardCategory
       slug="real-estate"
       name="Real Estate"
-      Icon={Home}
+      Icon={RealEstateIcon}
       color="green"
       totalListings={198}
       verifiedSellers={34}

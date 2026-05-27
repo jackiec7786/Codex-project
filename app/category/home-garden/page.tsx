@@ -1,5 +1,5 @@
 import StandardCategory from '@/components/StandardCategory';
-import { Sprout } from 'lucide-react';
+import { HomeGardenIcon } from '@/components/CategoryIcons';
 import { LATEST_LISTINGS, FEATURED_LISTINGS } from '@/lib/data';
 
 const SUBCATS = [
@@ -15,7 +15,7 @@ export default function CategoryPage() {
     <StandardCategory
       slug="home-garden"
       name="Home & Garden"
-      Icon={Sprout}
+      Icon={HomeGardenIcon}
       color="green"
       totalListings={234}
       verifiedSellers={31}

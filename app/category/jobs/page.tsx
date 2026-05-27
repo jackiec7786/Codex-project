@@ -1,5 +1,5 @@
 import StandardCategory from '@/components/StandardCategory';
-import { Briefcase } from 'lucide-react';
+import { JobsIcon } from '@/components/CategoryIcons';
 import { LATEST_LISTINGS, FEATURED_LISTINGS } from '@/lib/data';
 
 const SUBCATS = [
@@ -15,7 +15,7 @@ export default function CategoryPage() {
     <StandardCategory
       slug="jobs"
       name="Jobs"
-      Icon={Briefcase}
+      Icon={JobsIcon}
       color="yellow"
       totalListings={89}
       verifiedSellers={22}

@@ -7,21 +7,24 @@ import ListingCard from '@/components/ListingCard';
 import FeaturedVendorsCarousel from '@/components/FeaturedVendorsCarousel';
 import { CATEGORIES, FEATURED_LISTINGS, LATEST_LISTINGS } from '@/lib/data';
 import {
-  Plus, ArrowRight,
-  Wrench, Smartphone, Home as HomeIcon, Tag, Sprout, Car, Briefcase, MoreHorizontal,
+  Plus, ArrowRight, MoreHorizontal,
   ShieldCheck, Zap, Users,
 } from 'lucide-react';
+import {
+  VehiclesIcon, ElectronicsIcon, RealEstateIcon, ServicesIcon,
+  JobsIcon, HomeGardenIcon, ForSaleIcon, SGUIcon, FarmToTableIcon,
+} from '@/components/CategoryIcons';
 
-/* 8-category strip matching the reference screenshot exactly */
+/* 8-category strip — custom Caribbean-flavored icons */
 const HOMEPAGE_CATS = [
-  { label: 'Services',     listings: 24,  color: 'green',  Icon: Wrench,         href: '/listings?category=services' },
-  { label: 'Electronics',  listings: 186, color: 'red',    Icon: Smartphone,     href: '/listings?category=electronics' },
-  { label: 'Rentals',      listings: 312, color: 'green',  Icon: HomeIcon,       href: '/listings?category=real-estate' },
-  { label: 'For Sale',     listings: 451, color: 'yellow', Icon: Tag,            href: '/listings' },
-  { label: 'Home & Garden', listings: 98, color: 'green',  Icon: Sprout,         href: '/listings?category=home-garden' },
-  { label: 'Vehicles',     listings: 76,  color: 'red',    Icon: Car,            href: '/listings?category=vehicles' },
-  { label: 'Jobs',         listings: 53,  color: 'green',  Icon: Briefcase,      href: '/listings?category=jobs' },
-  { label: 'More',         listings: 0,   color: 'gray',   Icon: MoreHorizontal, href: '/listings', isMore: true },
+  { label: 'Services',     listings: 24,  color: 'green',  Icon: ServicesIcon,    href: '/category/services' },
+  { label: 'Electronics',  listings: 186, color: 'red',    Icon: ElectronicsIcon, href: '/category/electronics' },
+  { label: 'Real Estate',  listings: 312, color: 'green',  Icon: RealEstateIcon,  href: '/category/real-estate' },
+  { label: 'For Sale',     listings: 451, color: 'yellow', Icon: ForSaleIcon,     href: '/listings' },
+  { label: 'Home & Garden', listings: 98, color: 'green',  Icon: HomeGardenIcon,  href: '/category/home-garden' },
+  { label: 'Vehicles',     listings: 76,  color: 'red',    Icon: VehiclesIcon,    href: '/category/vehicles' },
+  { label: 'Jobs',         listings: 53,  color: 'green',  Icon: JobsIcon,        href: '/category/jobs' },
+  { label: 'SGU',          listings: 47,  color: 'red',    Icon: SGUIcon,         href: '/category/sgu' },
 ];
 
 const POPULAR = [
@@ -80,7 +83,7 @@ export default function HomePage() {
                   </div>
                   <div className="cat-circle-label">{c.label}</div>
                   <div className="cat-circle-count">
-                    {c.isMore ? 'View all' : `${c.listings} listings`}
+                    {`${c.listings} listings`}
                   </div>
                 </Link>
               );

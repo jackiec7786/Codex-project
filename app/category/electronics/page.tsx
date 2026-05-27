@@ -1,5 +1,5 @@
 import StandardCategory from '@/components/StandardCategory';
-import { Smartphone } from 'lucide-react';
+import { ElectronicsIcon } from '@/components/CategoryIcons';
 import { LATEST_LISTINGS, FEATURED_LISTINGS } from '@/lib/data';
 
 const SUBCATS = [
@@ -16,7 +16,7 @@ export default function CategoryPage() {
     <StandardCategory
       slug="electronics"
       name="Electronics"
-      Icon={Smartphone}
+      Icon={ElectronicsIcon}
       color="red"
       totalListings={287}
       verifiedSellers={19}
