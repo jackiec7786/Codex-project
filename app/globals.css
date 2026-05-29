@@ -3295,3 +3295,169 @@ p { margin: 0; }
   .adm-page-title { font-size: 22px; }
   .adm-page-head { padding-bottom: 12px; }
 }
+
+/* ============================================================
+   BESPOKE CATEGORY HEROES (Tourists, Local Business, Carriacou)
+   ============================================================ */
+
+/* Tourists — sunny yellow/turquoise vacation vibe */
+.cat-tourist-hero {
+  background: linear-gradient(135deg, #0891B2 0%, #06B6D4 60%, #FBBF24 130%);
+  color: white;
+  padding: 48px 0 56px;
+  position: relative;
+  overflow: hidden;
+}
+.cat-tourist-hero::before {
+  content: '🏝️';
+  position: absolute;
+  top: -30px; right: -10px;
+  font-size: 260px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+.cat-tourist-hero-inner { position: relative; z-index: 1; }
+
+/* Local Business — deep green */
+.cat-biz-hero {
+  background: linear-gradient(135deg, #0F7A5A 0%, #064E36 100%);
+  color: white;
+  padding: 48px 0 56px;
+  position: relative;
+  overflow: hidden;
+}
+.cat-biz-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cat-biz-hero-inner { position: relative; z-index: 1; }
+
+/* Carriacou — warm sunset red */
+.cat-carriacou-hero {
+  background: linear-gradient(135deg, #DC2626 0%, #991B1B 70%, #FB923C 130%);
+  color: white;
+  padding: 48px 0 56px;
+  position: relative;
+  overflow: hidden;
+}
+.cat-carriacou-hero::before {
+  content: '⛵';
+  position: absolute;
+  top: -20px; right: -10px;
+  font-size: 240px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+.cat-carriacou-hero-inner { position: relative; z-index: 1; }
+
+/* Shared hero structure for bespoke pages */
+.bespoke-hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  backdrop-filter: blur(4px);
+}
+.bespoke-hero-title {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+  max-width: 600px;
+}
+.bespoke-hero-title .accent { color: var(--brand-yellow); }
+.bespoke-hero-title .accent-light { color: #FEF3C7; }
+.bespoke-hero-desc {
+  font-size: 15px;
+  line-height: 1.55;
+  max-width: 540px;
+  opacity: 0.95;
+  margin-bottom: 24px;
+}
+
+/* 5-tile quick action grid (some bespoke pages have more than 4 actions) */
+.bespoke-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  max-width: 760px;
+}
+.bespoke-quick {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 14px 10px;
+  text-align: center;
+  color: white;
+  backdrop-filter: blur(4px);
+  transition: background 0.15s, transform 0.15s;
+}
+.bespoke-quick:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+}
+.bespoke-quick-icon {
+  font-size: 26px;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+.bespoke-quick-label {
+  font-size: 12px;
+  font-weight: 700;
+}
+.bespoke-quick-count {
+  font-size: 10px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+/* Highlights strip - 3 colored info cards below the hero */
+.bespoke-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+.bespoke-highlight {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+.bespoke-highlight-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: grid; place-items: center;
+  margin-bottom: 10px;
+}
+.bespoke-highlight-icon.green { background: var(--brand-green-light); color: var(--brand-green); }
+.bespoke-highlight-icon.red { background: var(--brand-red-light); color: var(--brand-red); }
+.bespoke-highlight-icon.yellow { background: var(--brand-yellow-light); color: #8a5a00; }
+.bespoke-highlight-icon.blue { background: #E0F2FE; color: #0891B2; }
+.bespoke-highlight-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.bespoke-highlight-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .bespoke-hero-title { font-size: 28px; }
+  .bespoke-quick-grid { grid-template-columns: repeat(3, 1fr); }
+  .bespoke-highlights { grid-template-columns: 1fr; }
+  .cat-tourist-hero, .cat-biz-hero, .cat-carriacou-hero { padding: 32px 0 40px; }
+}
